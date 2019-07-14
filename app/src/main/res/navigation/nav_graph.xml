@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/scanListFragment">
+
+    <fragment android:id="@+id/loginFragment"
+              android:name="com.martianlab.drunkennavigation.presentation.LoginFragment"
+              android:label="fragment_login"
+              tools:layout="@layout/fragment_login">
+        <action android:id="@+id/action_loginFragment_to_scanListFragment" app:destination="@id/scanListFragment"/>
+    </fragment>
+    <fragment android:id="@+id/scanListFragment"
+              android:name="com.martianlab.drunkennavigation.presentation.ScanListFragment"
+              android:label="fragment_scan_list" tools:layout="@layout/fragment_scan_list">
+        <action android:id="@+id/action_scanListFragment_to_loginFragment" app:destination="@id/loginFragment"/>
+        <action android:id="@+id/action_scanListFragment_to_listFragment" app:destination="@id/listFragment"/>
+    </fragment>
+    <fragment android:id="@+id/listFragment" android:name="com.martianlab.drunkennavigation.presentation.ListFragment"
+              android:label="fragment_list" tools:layout="@layout/fragment_list">
+        <action android:id="@+id/action_listFragment_to_loginFragment" app:destination="@id/loginFragment"/>
+    </fragment>
+
+
+</navigation>
