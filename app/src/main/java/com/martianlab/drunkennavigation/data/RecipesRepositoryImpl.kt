@@ -1,6 +1,8 @@
 package com.martianlab.drunkennavigation.data
 
 import android.content.SharedPreferences
+import com.martianlab.drunkennavigation.data.db.CategoryDao
+import com.martianlab.drunkennavigation.data.db.RecipeDao
 import com.martianlab.drunkennavigation.data.db.UserDao
 import com.martianlab.drunkennavigation.domain.*
 import com.martianlab.drunkennavigation.model.tools.AppExecutors
@@ -12,6 +14,8 @@ import javax.inject.Singleton
 class RecipesRepositoryImpl @Inject constructor(
     private val appExecutors: AppExecutors,
     private val userDao: UserDao,
+    private val categoryDao: CategoryDao,
+    private val recipeDao: RecipeDao,
     private val recipesService: RecipesService,
     private val preferences: SharedPreferences
 ) : RecipesRepository {

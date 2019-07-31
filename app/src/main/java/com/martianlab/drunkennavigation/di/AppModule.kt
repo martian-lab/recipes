@@ -21,6 +21,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.room.Room
 import com.android.example.github.util.LiveDataCallAdapterFactory
+import com.martianlab.drunkennavigation.data.db.RecipeDao
 import com.martianlab.drunkennavigation.data.db.RecipesDb
 import com.martianlab.drunkennavigation.data.db.UserDao
 import com.martianlab.drunkennavigation.domain.RecipesService
@@ -58,6 +59,12 @@ class AppModule {
     @Provides
     fun provideUserDao(db: RecipesDb): UserDao {
         return db.userDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRecipeDao(db: RecipesDb): RecipeDao {
+        return db.recipeDao()
     }
 
     @Singleton

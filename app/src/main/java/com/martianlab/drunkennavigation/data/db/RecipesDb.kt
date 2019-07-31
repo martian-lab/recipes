@@ -30,6 +30,7 @@ import com.martianlab.drunkennavigation.data.db.entities.User
     exportSchema = true
 )
 abstract class RecipesDb : RoomDatabase() {
-
     abstract fun userDao(): UserDao
+    abstract fun categoryDao(): CategoryDao
+    abstract fun recipeDao(): RecipeDao
 }
