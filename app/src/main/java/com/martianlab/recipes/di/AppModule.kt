@@ -21,6 +21,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.room.Room
 import com.android.example.github.util.LiveDataCallAdapterFactory
+import com.martianlab.recipes.domain.BackendApi
 import com.martianlab.recipes.tools.db.dao.RecipeDao
 import com.martianlab.recipes.model.tools.AppExecutors
 import com.martianlab.recipes.tools.db.dao.UserDao
@@ -34,13 +35,13 @@ import javax.inject.Singleton
 class AppModule {
     @Singleton
     @Provides
-    fun provideDNaviService(): backendApi {
+    fun provideDNaviService(): BackendApi {
         return Retrofit.Builder()
             .baseUrl("http://example.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
-            .create(backendApi::class.java)
+            .create(BackendApi::class.java)
     }
 
     @Singleton

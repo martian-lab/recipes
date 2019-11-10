@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Singleton
 class RecipesRepositoryImpl @Inject constructor(
     private val dbApi: DbApi,
-    private val backendApi: backendApi,
+    private val BackendApi: BackendApi,
     private val preferences: SharedPreferences
 ) : RecipesRepository {
 
