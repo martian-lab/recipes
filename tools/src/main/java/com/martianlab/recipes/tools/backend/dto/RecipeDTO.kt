@@ -2,7 +2,7 @@ package com.martianlab.recipes.tools.backend.dto
 
 import com.google.gson.annotations.SerializedName
 
-internal class RecipeDTO(
+class RecipeDTO(
     @SerializedName("Id")
     val id : Int,
     @SerializedName("Url")
@@ -22,10 +22,10 @@ internal class RecipeDTO(
     @SerializedName("Comment")
     val comments : List<CommentDTO>,
     @SerializedName("Rating")
-    val rating : RatingDTO
+    val rating : RatingDTO?
 )
 
-internal class RatingDTO(
+class RatingDTO(
     @SerializedName("Rate")
     val rate : Int,
     @SerializedName("Votes")

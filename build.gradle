@@ -28,7 +28,7 @@ buildscript {
             room            : '2.2.1',
             appcompat       : '1.1.0',
             lifecycle       : '2.1.0',
-            retrofit2       : '2.5.0',
+            retrofit2       : '2.6.1',
             okhttp          : '3.12.1',
             junit           : '4.12',
             work            : '1.0.0-rc02',

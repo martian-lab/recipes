@@ -22,8 +22,13 @@ import android.preference.PreferenceManager
 import androidx.room.Room
 import com.android.example.github.util.LiveDataCallAdapterFactory
 import com.martianlab.recipes.domain.BackendApi
+import com.martianlab.recipes.domain.DbApi
 import com.martianlab.recipes.tools.db.dao.RecipeDao
 import com.martianlab.recipes.model.tools.AppExecutors
+import com.martianlab.recipes.tools.backend.BackendImpl
+import com.martianlab.recipes.tools.db.DbImpl
+import com.martianlab.recipes.tools.db.RecipesDb
+import com.martianlab.recipes.tools.db.dao.CategoryDao
 import com.martianlab.recipes.tools.db.dao.UserDao
 import dagger.Module
 import dagger.Provides
@@ -35,20 +40,15 @@ import javax.inject.Singleton
 class AppModule {
     @Singleton
     @Provides
-    fun provideDNaviService(): BackendApi {
-        return Retrofit.Builder()
-            .baseUrl("http://example.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(LiveDataCallAdapterFactory())
-            .build()
-            .create(BackendApi::class.java)
+    fun provideBackendApi(): BackendApi {
+        return BackendImpl
     }
 
     @Singleton
     @Provides
-    fun provideDb(app: Application): com.martianlab.recipes.tools.db.RecipesDb {
+    fun provideDb(app: Application): RecipesDb {
         return Room
-            .databaseBuilder(app, com.martianlab.recipes.tools.db.RecipesDb::class.java, "recipes.db")
+            .databaseBuilder(app, RecipesDb::class.java, "recipes.db")
             .fallbackToDestructiveMigration()
             .build()
     }
@@ -56,19 +56,21 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideUserDao(db: com.martianlab.recipes.tools.db.RecipesDb): UserDao {
-        return db.userDao()
-    }
-
-    @Singleton
-    @Provides
-    fun provideRecipeDao(db: com.martianlab.recipes.tools.db.RecipesDb): RecipeDao {
+    fun provideRecipeDao(db : RecipesDb ): RecipeDao {
         return db.recipeDao()
     }
 
     @Singleton
     @Provides
-    fun provideExecutors() : AppExecutors = AppExecutors()
+    fun provideCategoryDao(db : RecipesDb ): CategoryDao {
+        return db.categoryDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideDbApi( recipeDao: RecipeDao, categoryDao: CategoryDao ): DbApi {
+        return DbImpl(recipeDao, categoryDao)
+    }
 
 
     @Singleton

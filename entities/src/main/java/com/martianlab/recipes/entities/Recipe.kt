@@ -30,7 +30,7 @@ data class RecipeIngredient(
     val id : Long,
     val recipeId : Long,
     val title : String,
-    val quantity : Double,
+    val quantity : String,
     val measureUnit : String,
     val position : Int
 )

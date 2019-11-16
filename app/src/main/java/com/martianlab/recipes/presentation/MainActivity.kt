@@ -29,7 +29,7 @@ class MainActivity : FragmentActivity() {
 //            Log.e("Camera start error-->> ", e.message.toString())
 //        }
 
-        //setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
 
         //qRscanViewModel  = ViewModelProviders.of(this).get(QRscanViewModel::class.java)

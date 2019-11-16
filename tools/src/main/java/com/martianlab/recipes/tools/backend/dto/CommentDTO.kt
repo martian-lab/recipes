@@ -1,8 +1,9 @@
 package com.martianlab.recipes.tools.backend.dto
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
-internal class CommentDTO(
+class CommentDTO(
     @SerializedName("Author")
     val author : String, // "Ольга Владимировна",
     @SerializedName("Created")
@@ -20,5 +21,5 @@ internal class CommentDTO(
     @SerializedName("UserPic")
     val userPic : String?,
     @SerializedName("SelfCommentRate")
-    val selfCommentRate : Int
+    val selfCommentRate : String
 )

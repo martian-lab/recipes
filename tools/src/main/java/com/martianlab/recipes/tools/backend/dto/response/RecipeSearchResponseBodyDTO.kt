@@ -4,8 +4,9 @@ import com.google.gson.annotations.SerializedName
 import com.martianlab.recipes.tools.backend.dto.CategoryDTO
 import com.martianlab.recipes.tools.backend.dto.RecipeCookingDTO
 import com.martianlab.recipes.tools.backend.dto.RecipeDTO
+import com.martianlab.recipes.tools.backend.dto.RecipeIngredientDTO
 
-internal class RecipeSearchResponseBodyDTO(
+class RecipeSearchResponseBodyDTO(
 
     @SerializedName("RecipeList")
     val recipeList: List<RecipeDTO>?,
@@ -20,5 +21,8 @@ internal class RecipeSearchResponseBodyDTO(
     val total: Int,
 
     @SerializedName("ErrorList")
-    val errors: Array<UtkerrorDTO>?
+    val errors: Array<UtkerrorDTO>?,
+
+    @SerializedName("RecipeIngredientList")
+    val ingredientList: List<RecipeIngredientDTO>?
 )

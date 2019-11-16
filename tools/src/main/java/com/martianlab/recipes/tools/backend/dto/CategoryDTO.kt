@@ -2,10 +2,10 @@ package com.martianlab.recipes.tools.backend.dto
 
 import com.google.gson.annotations.SerializedName
 
-internal class CategoryDTO(
+class CategoryDTO(
 
     @SerializedName("Id")
-    val id : Int,
+    val id : Long,
     @SerializedName("Category")
     val category : String,
     @SerializedName("Sort")

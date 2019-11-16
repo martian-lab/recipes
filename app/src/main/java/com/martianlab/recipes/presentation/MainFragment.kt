@@ -13,7 +13,7 @@ import com.martianlab.recipes.presentation.viewmodel.RecipesViewModel
 import javax.inject.Inject
 
 
-class TypesFragment : Fragment() {
+class MainFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: RecipesViewModel
@@ -32,4 +32,8 @@ class TypesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.loadRecipes()
+    }
 }

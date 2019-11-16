@@ -1,6 +1,7 @@
 package com.martianlab.recipes.domain
 
 import com.martianlab.recipes.entities.Recipe
+import com.martianlab.recipes.entities.Result
 
 
 /**
@@ -8,6 +9,6 @@ import com.martianlab.recipes.entities.Recipe
  */
 interface BackendApi {
 
-    suspend fun recipeSearch(categoryId : Long, recipeId : Long, count : Int, offset : Int ) : List<Recipe>
+    suspend fun recipeSearch(categoryId : Long, recipeId : Long, count : Int, offset : Int ) : Result<List<Recipe>>
 
 }
