@@ -1,5 +1,6 @@
 package com.martianlab.recipes.domain
 
+import com.martianlab.recipes.entities.Category
 import com.martianlab.recipes.entities.Recipe
 import com.martianlab.recipes.entities.RecipeIngredient
 import com.martianlab.recipes.entities.Result
@@ -17,4 +18,6 @@ interface RecipesRepository {
     suspend fun getRecipesByIngredient( ingredients: List<RecipeIngredient> ) : List<Recipe>
 
     suspend fun loadRecipesToDb()
+
+    suspend fun loadCategoriesFromDb() : List<Category>
 }

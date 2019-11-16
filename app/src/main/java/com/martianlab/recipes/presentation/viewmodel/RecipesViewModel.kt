@@ -7,6 +7,7 @@ import com.martianlab.recipes.domain.RecipesRepository
 import com.martianlab.recipes.entities.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import okhttp3.Dispatcher
 import javax.inject.Inject
@@ -22,7 +23,11 @@ class RecipesViewModel @Inject constructor(
 //            val recipes = repository.getRecipesFromBackend(100,0)
 //            //println("RECIPES: list= " + if(recipes is Result.Success){recipes.data}else{ listOf()})
 //            println("RECIPES: list length= " + if(recipes is Result.Success){recipes.data?.size}else{0} )
-            interactor.loadToDb()
+            println("RECIPES: loading started")
+            //interactor.loadToDb()
+            println("RECIPES: loading ended")
+            println("RECIPES: categories: " + interactor.getCategories())
         }
+        println("RECIPES: hello!")
     }
 }

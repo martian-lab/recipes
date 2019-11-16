@@ -81,6 +81,10 @@ class RecipesRepositoryImpl @Inject constructor(
         return categoryList
     }
 
+    override suspend fun loadCategoriesFromDb(): List<Category> {
+        return dbApi.loadCategories()
+    }
+
     suspend fun getRecipesTotal() : Long{
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
