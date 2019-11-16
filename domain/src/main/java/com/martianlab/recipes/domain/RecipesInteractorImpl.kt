@@ -1,6 +1,7 @@
 package com.martianlab.recipes.domain
 
 import com.martianlab.recipes.entities.Category
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,5 +16,9 @@ class RecipesInteractorImpl @Inject constructor(
 
     override suspend fun getCategories(): List<Category> {
         return recipesRepository.loadCategoriesFromDb()
+    }
+
+    override suspend fun loadToDbFlow(): Flow<String> {
+        return recipesRepository.loadRecipesToDbFlow()
     }
 }

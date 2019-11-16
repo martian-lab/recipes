@@ -3,6 +3,8 @@ package com.martianlab.recipes.data
 import android.content.SharedPreferences
 import com.martianlab.recipes.domain.*
 import com.martianlab.recipes.entities.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -63,9 +65,22 @@ class RecipesRepositoryImpl @Inject constructor(
     }
 
     override suspend fun loadRecipesToDb(){
-        val categoryList = getCategoriesFromBackend()
-        loadCategoriesToDb(categoryList).also { println("RECIPES: catIds=" + it) }
-        categoryList.forEach { loadCategoryRecipesToDb(it) }
+            val categoryList = getCategoriesFromBackend()
+            loadCategoriesToDb(categoryList).also { println("RECIPES: catIds=" + it) }
+            categoryList.forEach { loadCategoryRecipesToDb(it) }
+    }
+
+    override suspend fun loadRecipesToDbFlow() : Flow<String> {
+        return flow {
+            val categoryList = getCategoriesFromBackend()
+            emit("getting category list")
+            loadCategoriesToDb(categoryList)
+            emit("loading categories into db")
+            categoryList.forEach {
+                loadCategoryRecipesToDb(it)
+                emit("loading category ${it.title}" )
+            }
+        }
     }
 
     private suspend fun getCategoriesFromBackend() : List<Category>{

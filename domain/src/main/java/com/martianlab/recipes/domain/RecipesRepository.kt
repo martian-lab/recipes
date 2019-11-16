@@ -4,6 +4,7 @@ import com.martianlab.recipes.entities.Category
 import com.martianlab.recipes.entities.Recipe
 import com.martianlab.recipes.entities.RecipeIngredient
 import com.martianlab.recipes.entities.Result
+import kotlinx.coroutines.flow.Flow
 
 interface RecipesRepository {
 
@@ -20,4 +21,6 @@ interface RecipesRepository {
     suspend fun loadRecipesToDb()
 
     suspend fun loadCategoriesFromDb() : List<Category>
+
+    suspend fun loadRecipesToDbFlow() : Flow<String>
 }
