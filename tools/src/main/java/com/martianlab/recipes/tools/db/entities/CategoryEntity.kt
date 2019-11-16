@@ -9,11 +9,13 @@ import androidx.room.PrimaryKey
 data class CategoryEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id:Int = 0,
+    val id:Long = 0,
     @ColumnInfo(name = "imageUrl")
     val imageUrl : String?,
     @ColumnInfo(name = "title")
     val title : String,
     @ColumnInfo(name = "sort")
-    val sort : Int = Int.MAX_VALUE
+    val sort : Int = Int.MAX_VALUE,
+    @ColumnInfo(name = "total")
+    val total:Int = 0
 )

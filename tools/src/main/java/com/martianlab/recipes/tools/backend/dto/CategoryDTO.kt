@@ -9,5 +9,7 @@ class CategoryDTO(
     @SerializedName("Category")
     val category : String,
     @SerializedName("Sort")
-    val sort : Int
+    val sort : Int,
+    @SerializedName("imageURL")
+    val imageURL : String?
 )

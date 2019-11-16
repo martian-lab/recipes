@@ -11,7 +11,8 @@ internal object CategoryEntityMapper {
             id = entity.id,
             title = entity.title,
             imageUrl = entity.imageUrl,
-            sort = entity.sort
+            sort = entity.sort,
+            total = entity.total
         )
 
     fun map2Entity( model: Category) : CategoryEntity =
@@ -19,7 +20,8 @@ internal object CategoryEntityMapper {
             id = model.id,
             title = model.title,
             imageUrl = model.imageUrl,
-            sort = model.sort
+            sort = model.sort,
+            total = model.total
         )
 
 }

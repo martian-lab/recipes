@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat
 
 internal object RecipeSearchMapperFromDTO {
 
-    fun map( obj : RecipeSearchResponseBodyDTO ) : List<Recipe>{
+    fun mapToRecipeList( obj : RecipeSearchResponseBodyDTO ) : List<Recipe>{
         val tags = /*obj.categoryList?.map { it.toTag() }?.toSet() ?:*/ setOf<RecipeTag>()
         val ingredients = obj.ingredientList?.map { it.toIngredient() } ?: listOf()
         val stages = obj.recipeCookingList?.map { it.toStage() } ?: listOf()
@@ -23,6 +23,20 @@ internal object RecipeSearchMapperFromDTO {
             ?: listOf()
     }
 
+    fun mapToCategoryList( obj : RecipeSearchResponseBodyDTO ) : List<Category>{
+        val total = obj.total
+
+        return obj.categoryList
+            ?.map { it.toCategory(total) }
+            ?: listOf()
+    }
+
+    fun mapToCategory( obj : RecipeSearchResponseBodyDTO ) : Category? {
+        val total = obj.total
+
+        return obj.categoryList
+            ?.map { it.toCategory(total) }?.first()
+    }
 
     fun map( obj : RecipeDTO ) : Recipe{
         return Recipe(
@@ -80,10 +94,21 @@ internal object RecipeSearchMapperFromDTO {
             title = obj.category
         )
 
+    fun map( obj : CategoryDTO, total: Int ) : Category =
+        Category(
+            id = obj.id,
+            title = obj.category,
+            imageUrl = obj.imageURL,
+            sort = obj.sort,
+            total = total
+        )
+
 }
+fun RecipeSearchResponseBodyDTO.toCategory() : Category? = RecipeSearchMapperFromDTO.mapToCategory(this)
 
+fun RecipeSearchResponseBodyDTO.toCategoryList() : List<Category> = RecipeSearchMapperFromDTO.mapToCategoryList(this)
 
-fun RecipeSearchResponseBodyDTO.toRecipeList() : List<Recipe> = RecipeSearchMapperFromDTO.map(this)
+fun RecipeSearchResponseBodyDTO.toRecipeList() : List<Recipe> = RecipeSearchMapperFromDTO.mapToRecipeList(this)
 
 fun RecipeDTO.toRecipe() : Recipe = RecipeSearchMapperFromDTO.map(this)
 
@@ -94,3 +119,5 @@ fun RecipeCookingDTO.toStage() : RecipeStage = RecipeSearchMapperFromDTO.map(thi
 fun RecipeIngredientDTO.toIngredient() : RecipeIngredient = RecipeSearchMapperFromDTO.map(this)
 
 fun CategoryDTO.toTag( recipeId : Long ) : RecipeTag = RecipeSearchMapperFromDTO.map(this, recipeId )
+
+fun CategoryDTO.toCategory( total : Int ) : Category = RecipeSearchMapperFromDTO.map(this, total )

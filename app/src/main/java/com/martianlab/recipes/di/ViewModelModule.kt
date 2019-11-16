@@ -1,6 +1,8 @@
 package com.martianlab.recipes.di
 
 import com.martianlab.recipes.data.RecipesRepositoryImpl
+import com.martianlab.recipes.domain.RecipesInteractor
+import com.martianlab.recipes.domain.RecipesInteractorImpl
 import com.martianlab.recipes.domain.RecipesRepository
 
 
@@ -14,6 +16,10 @@ interface ViewModelModule {
 
     @Singleton
     @Binds
-    fun provideRecipesRepository(repositoryImpl: com.martianlab.recipes.data.RecipesRepositoryImpl): com.martianlab.recipes.domain.RecipesRepository
+    fun provideRecipesRepository(repositoryImpl: RecipesRepositoryImpl): RecipesRepository
 
+
+    @Singleton
+    @Binds
+    fun provideRecipesInteractor(interactorImpl: RecipesInteractorImpl): RecipesInteractor
 }

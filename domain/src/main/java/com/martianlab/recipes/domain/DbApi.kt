@@ -11,10 +11,12 @@ interface DbApi{
 
     suspend fun getRecipeById(id : Long ) : Recipe
 
-    suspend fun insert(recipe: Recipe)
+    suspend fun insert(recipe: Recipe) : Long
 
-    suspend fun insert(recipeList : List<Recipe>)
+    suspend fun insert(recipeList : List<Recipe>): List<Long>
 
     suspend fun loadCategories() : List<Category>
+
+    suspend fun insertCategories(categoryList: List<Category>) : List<Long>
 
 }

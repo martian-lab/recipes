@@ -24,18 +24,23 @@ class DbImpl(
         return recipeDao.getById(id).toRecipe()
     }
 
-    override suspend fun insert(recipe: Recipe) {
-        recipeDao.insert(recipe = recipe.toEntity() )
+    override suspend fun insert(recipe: Recipe) : Long {
+        val id = recipeDao.insert(recipe = recipe.toEntity() )
         recipeDao.insertIngredients( recipe.ingredients.map { it.toEntity() } )
         recipeDao.insertStages( recipe.stages.map { it.toEntity() } )
         recipeDao.insertTags( recipe.tags.map { it.toEntity() } )
+        return id
     }
 
-    override suspend fun insert(recipeList: List<Recipe>) {
-        recipeDao.insertAll( recipeList.map { it.toEntity() } )
+    override suspend fun insert(recipeList: List<Recipe>): List<Long> {
+        return recipeDao.insertAll( recipeList.map { it.toEntity() } )
     }
 
     override suspend fun loadCategories(): List<Category> {
         return categoryDao.getAll().map { it.toModel() }
+    }
+
+    override suspend fun insertCategories(categoryList: List<Category>): List<Long> {
+        return categoryDao.insertAll(categoryList.map { it.toEntity() })
     }
 }
