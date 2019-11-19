@@ -20,20 +20,15 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.room.Room
-import com.android.example.github.util.LiveDataCallAdapterFactory
 import com.martianlab.recipes.domain.BackendApi
 import com.martianlab.recipes.domain.DbApi
 import com.martianlab.recipes.tools.db.dao.RecipeDao
-import com.martianlab.recipes.model.tools.AppExecutors
 import com.martianlab.recipes.tools.backend.BackendImpl
 import com.martianlab.recipes.tools.db.DbImpl
 import com.martianlab.recipes.tools.db.RecipesDb
 import com.martianlab.recipes.tools.db.dao.CategoryDao
-import com.martianlab.recipes.tools.db.dao.UserDao
 import dagger.Module
 import dagger.Provides
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module(includes = [ViewModelModule::class])
