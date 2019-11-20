@@ -24,7 +24,6 @@ import com.martianlab.recipes.di.DaggerAppComponent
 
 
 class RecipesApp : Application(){
-
     lateinit var component : AppComponent
 
     override fun onCreate() {

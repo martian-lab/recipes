@@ -70,6 +70,7 @@ class RecipesRepositoryImpl @Inject constructor(
             categoryList.forEach { loadCategoryRecipesToDb(it) }
     }
 
+
     override suspend fun loadRecipesToDbFlow() : Flow<String> {
         return flow {
             val categoryList = getCategoriesFromBackend()
@@ -81,6 +82,8 @@ class RecipesRepositoryImpl @Inject constructor(
                 emit("loading category ${it.title}" )
             }
         }
+
+
     }
 
     private suspend fun getCategoriesFromBackend() : List<Category>{

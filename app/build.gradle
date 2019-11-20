@@ -31,8 +31,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":entities")
-    implementation project(":tools")
+    //implementation project(":entities")
+    //implementation project(":tools")
     implementation project(":data")
     implementation project(":domain")
 
@@ -43,7 +43,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-vision:19.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation "androidx.work:work-runtime-ktx:2.1.0"
+    implementation "androidx.work:work-runtime-ktx:2.2.0"
 
     //Room
     implementation "androidx.room:room-runtime:${versions.room}"

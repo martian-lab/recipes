@@ -1,7 +1,6 @@
 package com.martianlab.recipes.tools.backend.dto
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 class CommentDTO(
     @SerializedName("Author")

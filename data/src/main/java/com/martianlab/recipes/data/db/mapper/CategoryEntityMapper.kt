@@ -1,9 +1,7 @@
 package com.martianlab.recipes.tools.db.mapper
 
 import com.martianlab.recipes.entities.Category
-import com.martianlab.recipes.entities.Recipe
 import com.martianlab.recipes.tools.db.entities.CategoryEntity
-import com.martianlab.recipes.tools.db.entities.RecipeEntity
 
 internal object CategoryEntityMapper {
     fun map2Model( entity: CategoryEntity) : Category =

@@ -1,10 +1,6 @@
 package com.martianlab.recipes.tools.db.entities
 
 import androidx.room.*
-import com.martianlab.recipes.entities.RecipeComment
-import com.martianlab.recipes.entities.RecipeIngredient
-import com.martianlab.recipes.entities.RecipeStage
-import com.martianlab.recipes.entities.RecipeTag
 
 
 @Entity(tableName = "recipe")

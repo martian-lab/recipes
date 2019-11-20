@@ -1,7 +1,6 @@
 package com.martianlab.recipes.tools.db.dao
 
 import androidx.room.*
-import com.martianlab.recipes.entities.RecipeComment
 import com.martianlab.recipes.tools.db.entities.*
 
 @Dao

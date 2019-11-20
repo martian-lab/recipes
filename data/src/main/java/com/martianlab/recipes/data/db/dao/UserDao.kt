@@ -1,7 +1,5 @@
 package com.martianlab.recipes.tools.db.dao
 
-import androidx.lifecycle.LiveData
-import com.martianlab.recipes.tools.db.entities.User
 import androidx.room.*
 
 @Dao

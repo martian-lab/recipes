@@ -30,13 +30,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":domain")
-    implementation project(":entities")
+    //implementation project(":entities")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
-    implementation "androidx.core:core-ktx:${versions.coreKtx}"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //dagger
     compileOnly 'javax.annotation:jsr250-api:1.0'
@@ -47,5 +43,21 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-android-processor:${versions.dagger}"
     kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
 
+    //Room
+    implementation "androidx.room:room-runtime:${versions.room}"
+    annotationProcessor "androidx.room:room-compiler:${versions.room}"
+    kapt "androidx.room:room-compiler:${versions.room}"
+    implementation "androidx.room:room-ktx:${versions.room}"
+
+
+    //retrofit
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:${versions.okhttp}"
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit2}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit2}"
+
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
 }
