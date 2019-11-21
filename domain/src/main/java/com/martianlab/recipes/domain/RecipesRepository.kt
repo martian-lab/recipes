@@ -10,7 +10,7 @@ interface RecipesRepository {
 
     suspend fun getRecipesFromBackend(count : Int, offset : Int ) : Result<List<Recipe>>
 
-    suspend fun insertRecipes(recipes: List<Recipe>) : List<Long>
+    suspend fun insertRecipes(recipes: List<Recipe>)
 
     suspend fun loadRecipes() : List<Recipe>
 

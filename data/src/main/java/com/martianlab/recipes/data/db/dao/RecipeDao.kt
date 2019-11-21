@@ -9,6 +9,9 @@ interface RecipeDao {
     @Query("SELECT * FROM recipe JOIN recipe_tag ON recipe.id = recipe_id WHERE recipe_tag.id = :tag_id")
     suspend fun getRecipes(tag_id: Long): List<RecipeWithDependencies>
 
+    @Query("SELECT * FROM recipe")
+    suspend fun getRecipes(): List<RecipeWithDependencies>
+
     @Query("SELECT * FROM recipe WHERE id = :id")
     suspend fun getById(id: Long): RecipeWithDependencies
 

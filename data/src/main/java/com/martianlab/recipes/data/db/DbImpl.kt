@@ -20,6 +20,10 @@ class DbImpl(
         return recipeDao.getRecipes(tag.id).map { it.toRecipe() }
     }
 
+    override suspend fun getRecipes(): List<Recipe> {
+        return recipeDao.getRecipes().map { it.toRecipe() }
+    }
+
     override suspend fun getRecipeById(id: Long): Recipe {
         return recipeDao.getById(id).toRecipe()
     }
@@ -29,11 +33,12 @@ class DbImpl(
         recipeDao.insertIngredients( recipe.ingredients.map { it.toEntity() } )
         recipeDao.insertStages( recipe.stages.map { it.toEntity() } )
         recipeDao.insertTags( recipe.tags.map { it.toEntity() } )
+        recipeDao.insertComments(recipe.comments.map { it.toEntity() })
         return id
     }
 
-    override suspend fun insert(recipeList: List<Recipe>): List<Long> {
-        return recipeDao.insertAll( recipeList.map { it.toEntity() } )
+    override suspend fun insert(recipeList: List<Recipe>) {
+        recipeList.forEach { insert(it) }//.also { println("RECIPES:: listtop=" + recipeList[0]) }
     }
 
     override suspend fun loadCategories(): List<Category> {

@@ -1,7 +1,13 @@
 package com.martianlab.recipes.data
 
 import android.content.SharedPreferences
-import com.martianlab.recipes.domain.*
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import com.google.gson.stream.JsonReader
+import com.martianlab.recipes.domain.BackendApi
+import com.martianlab.recipes.domain.DbApi
+import com.martianlab.recipes.domain.RecipesRepository
 import com.martianlab.recipes.entities.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,12 +27,26 @@ class RecipesRepositoryImpl @Inject constructor(
         return backendApi.recipeSearch(0L, 0L, count, offset)
     }
 
-    override suspend fun insertRecipes(recipes: List<Recipe>): List<Long> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun insertRecipes(recipes: List<Recipe>) {
+        dbApi.insert(recipes)
     }
 
     override suspend fun loadRecipes(): List<Recipe> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val recipes = dbApi.getRecipes()
+        if( recipes.isEmpty() ){
+            loadRecipesFromFile().also {
+                insertRecipes(it)
+                return@loadRecipes it
+            }
+        }
+        return recipes
+    }
+
+    private fun loadRecipesFromFile() : List<Recipe>{
+        val json = RecipesRepositoryImpl::class.java.classLoader?.getResource("recipes.json")?.readText()
+        val recipeListTypeToken = object : TypeToken<List<Recipe>>() {}.type
+        val recipeList: List<Recipe> = Gson().fromJson(json, recipeListTypeToken)
+        return recipeList
     }
 
 
@@ -39,14 +59,15 @@ class RecipesRepositoryImpl @Inject constructor(
     }
 
     private suspend fun loadCategoryRecipesToDb(category : Category ){
-        val count = 50
+        val count = 20
         var offset = 0
-        println("RECIPES: category=" + category)
+        //println("RECIPES: category=" + category)
         do {
             val result = backendApi.recipeSearch(category.id, 0L, count, offset )
             if( result is Result.Success ){
                 result.data?.let {list ->
                     val recipeWithTagList = list.map { it.copy(tags = setOf(RecipeTag(id=category.id, recipeId = it.id, title = category.title ))) }
+//                    println("RECIPES:: firts cat recipe=" + recipeWithTagList[0].ingredients )
                     dbApi.insert(recipeWithTagList)
 //                    println("RECIPES: list=" + recipeWithTagList )
 //                    list.forEach {
