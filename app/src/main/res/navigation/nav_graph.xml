@@ -2,10 +2,29 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-        app:startDestination="@id/mainFragment">
+        app:startDestination="@id/recipesFragment">
     <fragment
             android:id="@+id/mainFragment"
             android:name="com.martianlab.recipes.presentation.MainFragment"
             android:label="fragment_types"
             tools:layout="@layout/fragment_types" />
+    <fragment
+            android:id="@+id/recipesFragment"
+            android:name="com.martianlab.recipes.presentation.RecipesFragment"
+            android:label="RecipesFragment" >
+        <action
+                android:id="@+id/action_recipesFragment_to_recipeDetailsFragment"
+                app:destination="@id/recipeDetailsFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/recipeDetailsFragment"
+            android:name="com.martianlab.recipes.presentation.RecipeDetailsFragment"
+            android:label="fragment_recipe"
+            tools:layout="@layout/fragment_recipe" >
+        <argument
+                android:name="recipe_id"
+                app:argType="long" />
+    </fragment>
+
+
 </navigation>

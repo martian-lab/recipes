@@ -19,7 +19,7 @@ internal object RecipeSearchMapperFromDTO {
 
         return obj.recipeList
             ?.map { it.toRecipe() }
-            ?.map { it.copy(tags = tags, ingredients = ingredients, stages = stages) }
+            ?.map { recipe -> recipe.copy(ingredients = ingredients.filter { it.recipeId == recipe.id }, stages = stages.filter { it.recipeId == recipe.id }) }
             ?: listOf()
     }
 
@@ -50,7 +50,7 @@ internal object RecipeSearchMapperFromDTO {
             ratingVotes = obj.rating?.votes ?: 0,
             comments = obj.comments.map { it.toComment(obj.id.toLong()) },
             stages = listOf(),
-            tags = setOf(),
+            tags = listOf(),
             ingredients = listOf()
         )
     }

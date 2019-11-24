@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="UtkonosToolbar" parent="@style/ThemeOverlay.AppCompat.Light">
+        <!--item name="android:actionOverflowButtonStyle">@style/UtkonosActionButtonOverflow</item-->
+        <!-- Required for pre-Lollipop. -->
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">4.0dp</item>
+        <item name="android:overlapAnchor" tools:targetApi="21">false</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:itemBackground">#ffffffff</item>
+    </style>
 </resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="clickListener"
+                type="android.view.View.OnClickListener"/>
+
+        <variable
+                name="recipe"
+                type="com.martianlab.recipes.entities.Recipe"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="220dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="@{clickListener}">
+
+        <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_menu_gallery" />
+
+
+        <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:maxLines="3"
+                android:text="@{recipe.title}"
+                android:textAppearance="?attr/textAppearanceOverline"
+                tools:text="Березовая каша с вкусными ореховыми прутиками" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

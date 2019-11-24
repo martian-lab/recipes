@@ -5,7 +5,11 @@ import com.martianlab.recipes.tools.db.converter.DateTimeConverter
 import com.martianlab.recipes.tools.db.converter.StringListConverter
 import java.util.*
 
-@Entity(tableName = "recipe_comment", foreignKeys = [ForeignKey(entity = RecipeEntity::class, parentColumns = ["id"], childColumns = ["recipe_id"], onDelete = ForeignKey.CASCADE)])
+@Entity(
+    tableName = "recipe_comment",
+    indices = [Index("recipe_id")],
+    foreignKeys = [ForeignKey(entity = RecipeEntity::class, parentColumns = ["id"], childColumns = ["recipe_id"], onDelete = ForeignKey.CASCADE)]
+)
 @TypeConverters(DateTimeConverter::class, StringListConverter::class)
 data class RecipeCommentEntity(
     @PrimaryKey(autoGenerate = true)

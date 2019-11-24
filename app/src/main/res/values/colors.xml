@@ -3,4 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="mossy_green">#28854B</color>
+    <color name="mossy_green_with_black10">#0B9F43</color>
+    <color name="status_bar_color">#C2C2C2</color>
+    <color name="mossy_green70">#b328854B</color>
+    <color name="bluey_grey">#889aa6</color>
+    <color name="bluish_gray">#A5B5C1</color>
+    <color name="greyish_brown">#4a4a4a</color>
+    <color name="black">#333333</color>
 </resources>

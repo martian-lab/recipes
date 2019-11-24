@@ -11,7 +11,7 @@ data class Recipe(
     val personCount : Int,
     val rating : Double?,
     val ratingVotes : Int?,
-    val tags: Set<RecipeTag>,
+    val tags: List<RecipeTag>,
     val stages : List<RecipeStage>,
     val ingredients : List<RecipeIngredient>,
     val comments: List<RecipeComment>

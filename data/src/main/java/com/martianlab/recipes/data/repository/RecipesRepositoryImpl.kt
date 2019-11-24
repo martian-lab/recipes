@@ -1,12 +1,13 @@
 package com.martianlab.recipes.data
 
 import android.content.SharedPreferences
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.google.gson.stream.JsonReader
+import com.martianlab.recipes.data.db.DbApi
 import com.martianlab.recipes.domain.BackendApi
-import com.martianlab.recipes.domain.DbApi
 import com.martianlab.recipes.domain.RecipesRepository
 import com.martianlab.recipes.entities.*
 import kotlinx.coroutines.flow.Flow
@@ -31,8 +32,17 @@ class RecipesRepositoryImpl @Inject constructor(
         dbApi.insert(recipes)
     }
 
+    override fun loadRecipesPaged(tags : List<RecipeTag>): LiveData<PagedList<Recipe>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setPageSize(10)
+            .build()
+        return dbApi.getRecipesPages(tags).toLiveData(config)
+    }
+
     override suspend fun loadRecipes(): List<Recipe> {
         val recipes = dbApi.getRecipes()
+        //println("RECIPES: from db size=" + recipes.size )
         if( recipes.isEmpty() ){
             loadRecipesFromFile().also {
                 insertRecipes(it)
@@ -49,9 +59,15 @@ class RecipesRepositoryImpl @Inject constructor(
         return recipeList
     }
 
+    private fun loadCategoriesFromFile() : List<Category>{
+        val json = RecipesRepositoryImpl::class.java.classLoader?.getResource("categories.json")?.readText()
+        val categoryListTypeToken = object : TypeToken<List<Category>>() {}.type
+        val categoryList: List<Category> = Gson().fromJson(json, categoryListTypeToken)
+        return categoryList
+    }
 
-    override suspend fun getRecipe(id: Long): Recipe {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun getRecipe(id: Long): Recipe? {
+        return dbApi.getRecipeById(id)
     }
 
     override suspend fun getRecipesByIngredient(ingredients: List<RecipeIngredient>): List<Recipe> {
@@ -61,13 +77,13 @@ class RecipesRepositoryImpl @Inject constructor(
     private suspend fun loadCategoryRecipesToDb(category : Category ){
         val count = 20
         var offset = 0
-        //println("RECIPES: category=" + category)
+        println("RECIPES: category=" + category)
         do {
             val result = backendApi.recipeSearch(category.id, 0L, count, offset )
             if( result is Result.Success ){
                 result.data?.let {list ->
-                    val recipeWithTagList = list.map { it.copy(tags = setOf(RecipeTag(id=category.id, recipeId = it.id, title = category.title ))) }
-//                    println("RECIPES:: firts cat recipe=" + recipeWithTagList[0].ingredients )
+                    val recipeWithTagList = list.map { it.copy(tags = listOf(RecipeTag(id=category.id, recipeId = it.id, title = category.title ))) }
+                    println("RECIPES:: firts cat recipe=" + recipeWithTagList[0].tags )
                     dbApi.insert(recipeWithTagList)
 //                    println("RECIPES: list=" + recipeWithTagList )
 //                    list.forEach {
@@ -121,7 +137,17 @@ class RecipesRepositoryImpl @Inject constructor(
     }
 
     override suspend fun loadCategoriesFromDb(): List<Category> {
-        return dbApi.loadCategories()
+//        loadCategoriesToDb(getCategoriesFromBackend())
+        val categories = dbApi.loadCategories()
+        //println("RECIPES: categories from db size=" + categories.size )
+        if( categories.isEmpty() ){
+            loadCategoriesFromFile().also {
+                dbApi.insertCategories(it)
+                return it
+            }
+        }
+        return categories
+        //return dbApi.loadCategories()
     }
 
     suspend fun getRecipesTotal() : Long{

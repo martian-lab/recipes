@@ -15,7 +15,7 @@ internal object RecipeEntityMapper {
             rating = entity.rating,
             ratingVotes = entity.ratingVotes,
             ingredients = listOf(),
-            tags = setOf(),
+            tags = listOf(),
             comments = listOf(),//entity.comments,
             stages = listOf()
         )
@@ -43,9 +43,18 @@ internal object RecipeEntityMapper {
             rating = entity.recipeEntity.rating,
             ratingVotes = entity.recipeEntity.ratingVotes,
             ingredients = entity.ingredients.map { it.toRecipeIngredient() },
-            tags = entity.tags.map { it.toRecipeTag() }.toSet(),
+            tags = entity.tags.map { it.toRecipeTag() },
             comments = entity.comments.map { it.toRecipeComment() },
             stages = entity.stages.map { it.toRecipeStage() }
+        )
+
+    fun map2EntityWithDependencies( entity: Recipe) : RecipeWithDependencies =
+        RecipeWithDependencies(
+            recipeEntity = entity.toEntity(),
+            ingredients = entity.ingredients.map { it.toEntity() },
+            tags = entity.tags.map { it.toEntity() }.toSet(),
+            comments = entity.comments.map { it.toEntity() },
+            stages = entity.stages.map { it.toEntity() }
         )
 
     fun map2Model( entity: RecipeStageEntity) : RecipeStage =
@@ -157,3 +166,6 @@ fun RecipeEntity.toRecipe() =
 
 fun Recipe.toEntity() =
     RecipeEntityMapper.map2Entity(this)
+
+fun Recipe.toEntityWithDependencies() =
+    RecipeEntityMapper.map2EntityWithDependencies(this)

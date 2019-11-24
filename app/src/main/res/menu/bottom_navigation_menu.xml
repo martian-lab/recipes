@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="Профиль"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_orders"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="Рейс"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_invisible"
+        android:enabled="false"
+        android:title=""
+        android:iconTint="@android:color/transparent"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_summary"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="Итоги"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_phones"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="Звонки"
+        app:showAsAction="always" />
+</menu>

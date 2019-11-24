@@ -1,11 +1,10 @@
 package com.martianlab.recipes.presentation.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import androidx.paging.PagedList
 import com.martianlab.recipes.domain.RecipesInteractor
 import com.martianlab.recipes.entities.Category
 import com.martianlab.recipes.entities.Recipe
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 import kotlinx.coroutines.*
 
@@ -18,25 +17,45 @@ class RecipesViewModel @Inject constructor(
 
     val loadingState = MutableLiveData<Resource<String>>()
 
+    val params = MutableLiveData<Category>()//.also { it.value = Category() }
+
+    val recipesPaged = Transformations.switchMap(params){
+        println("RECIPES: params=" + it )
+        interactor.getRecipesPaged(it)
+    }
+
+    fun getRecipe(id: Long ) : LiveData<Recipe?>{
+        return liveData{
+            val recipe = interactor.getRecipe(id)
+            emit(recipe)
+        }
+    }
+    //val recipesPaged = interactor.getRecipesPaged()
+
+    fun getRecipes(category: Category) = interactor.getRecipesPaged(category)
+
     fun loadRecipes(){
         val job = launch {
 //            categories.postValue(Resource.Loading)
-            loadingState.postValue(Resource.Loading)
-////            println("RECIPES: loading started")
+//            loadingState.postValue(Resource.Loading)
+//            println("RECIPES: loading started")
 //            interactor.loadToDbFlow().collect{
 //                loadingState.postValue(Resource.Success(it))
 //            }
 //            loadingState.postValue(Resource.Success("loading finished"))
-//            println("RECIPES: loading ended")
-//            val categoryList = interactor.getCategories()
+
+            val categoryList = interactor.getCategories()
 //            println("RECIPES: categories: " + categoryList)
-//            categories.postValue(Resource.Success(categoryList))
+            categories.postValue(Resource.Success(categoryList))
 //            loadingState.postValue(Resource.Success("${categoryList.map { it.total }.sum()} рецептов загружено"))
-
+///            println("RECIPES:, loaded size=" + interactor.getRecipes().size)
+//            println("RECIPES:, loaded 5=" + interactor.getRecipes().subList(3,5))
             recipes.postValue(Resource.Success(interactor.getRecipes()))
-            loadingState.postValue(Resource.Success("loading finished"))
+//            println("RECIPES: loading ended")
+//            params.postValue(categoryList[0])
+//            loadingState.postValue(Resource.Success("loading finished"))
         }
-
+        //params.value?.let { params.value = it }
     }
 
     override fun onCleared() {

@@ -21,7 +21,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.room.Room
 import com.martianlab.recipes.domain.BackendApi
-import com.martianlab.recipes.domain.DbApi
+import com.martianlab.recipes.data.db.DbApi
 import com.martianlab.recipes.tools.db.dao.RecipeDao
 import com.martianlab.recipes.tools.backend.BackendImpl
 import com.martianlab.recipes.tools.db.DbImpl

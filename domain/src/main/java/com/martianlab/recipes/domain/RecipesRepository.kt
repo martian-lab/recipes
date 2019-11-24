@@ -1,9 +1,8 @@
 package com.martianlab.recipes.domain
 
-import com.martianlab.recipes.entities.Category
-import com.martianlab.recipes.entities.Recipe
-import com.martianlab.recipes.entities.RecipeIngredient
-import com.martianlab.recipes.entities.Result
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
+import com.martianlab.recipes.entities.*
 import kotlinx.coroutines.flow.Flow
 
 interface RecipesRepository {
@@ -14,7 +13,7 @@ interface RecipesRepository {
 
     suspend fun loadRecipes() : List<Recipe>
 
-    suspend fun getRecipe( id : Long ) : Recipe
+    suspend fun getRecipe( id : Long ) : Recipe?
 
     suspend fun getRecipesByIngredient( ingredients: List<RecipeIngredient> ) : List<Recipe>
 
@@ -23,4 +22,6 @@ interface RecipesRepository {
     suspend fun loadCategoriesFromDb() : List<Category>
 
     suspend fun loadRecipesToDbFlow() : Flow<String>
+
+    fun loadRecipesPaged(tags : List<RecipeTag>): LiveData<PagedList<Recipe>>
 }

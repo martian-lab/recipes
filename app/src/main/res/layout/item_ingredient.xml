@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+                name="ingredient"
+                type="com.martianlab.recipes.entities.RecipeIngredient" />
+    </data>
+
+    <FrameLayout  android:id="@+id/root"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="48dp"
+                 android:contentDescription="Ингредиент">
+
+        <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginRight="48dp"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textColor="@color/greyish_brown"
+                android:textSize="14sp"
+                android:text="@{ingredient.title}"
+                tools:text="Томаты в собственном соку"/>
+
+        <TextView
+                android:id="@+id/units"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bluey_grey"
+                android:layout_gravity="right|center_vertical"
+                android:textSize="14sp"
+                android:text="@{ingredient.quantity + ` ` + ingredient.measureUnit}"
+                tools:text="400 гр"/>
+    </FrameLayout>
+</layout>

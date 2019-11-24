@@ -19,6 +19,8 @@ package com.martianlab.recipes.di
 import android.app.Application
 import com.martianlab.recipes.RecipesApp
 import com.martianlab.recipes.presentation.MainFragment
+import com.martianlab.recipes.presentation.RecipeDetailsFragment
+import com.martianlab.recipes.presentation.RecipesFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -49,6 +51,8 @@ interface AppComponent {
 
     fun inject(app: RecipesApp)
     fun inject(fragment: MainFragment)
+    fun inject(fragment: RecipesFragment)
+    fun inject(fragment: RecipeDetailsFragment)
 //    fun inject(activity: MainActivity)
 
 }

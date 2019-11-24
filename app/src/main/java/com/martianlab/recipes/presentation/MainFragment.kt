@@ -59,17 +59,24 @@ class MainFragment : Fragment() {
             recipes ->
                 if( recipes is Resource.Success)
                     println("RECIPES: json=" + recipes.data?.get(10)?.ingredients)
-            //domystaff(Gson().toJson(recipes))
+            domystaff(Gson().toJson(recipes), "recipes.json")
+        })
+
+        viewModel.categories.observe(viewLifecycleOwner, Observer {
+                categories ->
+            if( categories is Resource.Success)
+                println("RECIPES: json=" + categories.data)
+            domystaff(Gson().toJson(categories), "categories.json")
         })
 
     }
 
-    private fun domystaff(json : String){
+    private fun domystaff(json : String, filename : String){
 
         try {
             val path = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS);
-            val myFile = File(path, "mytextfile.json");
+            val myFile = File(path, filename);
             val fOut = FileOutputStream(myFile,true);
             val myOutWriter = OutputStreamWriter(fOut);
             myOutWriter.append(json);

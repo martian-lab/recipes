@@ -1,13 +1,15 @@
 package com.martianlab.recipes.tools.db.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 
-@Entity(tableName = "recipe_entity", foreignKeys = [ForeignKey(entity = RecipeEntity::class, parentColumns = ["id"], childColumns = ["recipe_id"], onDelete = ForeignKey.CASCADE)])
+@Entity(
+    tableName = "recipe_entity",
+    primaryKeys = ["id"],
+    indices = [Index("recipe_id")],
+    foreignKeys = [ForeignKey(entity = RecipeEntity::class, parentColumns = ["id"], childColumns = ["recipe_id"], onDelete = ForeignKey.CASCADE)]
+)
 data class RecipeStageEntity(
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id : Long,
     @ColumnInfo(name = "recipe_id")
