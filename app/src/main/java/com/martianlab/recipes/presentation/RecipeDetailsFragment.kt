@@ -60,6 +60,7 @@ class RecipeDetailsFragment : Fragment() {
         viewModel.getRecipe(args.recipeId).observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.recipe = it
+                toolbar.title = it.title
                 ingredientAdapter.replaceData(it.ingredients)
                 stageAdapter.replaceData(it.stages)
             }
@@ -77,6 +78,7 @@ class RecipeDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
     }
 
     private fun showIngredients() {

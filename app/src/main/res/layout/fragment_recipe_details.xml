@@ -40,25 +40,26 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                    <androidx.appcompat.widget.Toolbar
-                            android:id="@+id/toolbar"
+                    <com.google.android.material.appbar.MaterialToolbar
                             android:layout_width="match_parent"
-                            android:layout_height="?attr/actionBarSize"
-                            android:background="@android:color/white"
-                            android:theme="@style/UtkonosToolbar">
-
-                        <TextView
-                                android:id="@+id/toolbar_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:maxLines="1"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                android:text="@{recipe.title}"
-                                tools:text="Заголовок" />
-
-                    </androidx.appcompat.widget.Toolbar>
+                            android:layout_height="wrap_content"
+                            android:id="@+id/toolbar"
+                            android:minHeight="?attr/actionBarSize"
+                            android:theme = "@style/UtkonosToolbar"
+                            app:title="@{recipe.title}"
+                            app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+                            app:titleTextColor="@android:color/white">
+                            <TextView
+                                    android:id="@+id/toolbar_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    tools:text="Заголовок"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@{recipe.title}"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"/>
+                    </com.google.android.material.appbar.MaterialToolbar>
 
                     <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/recipeImage"

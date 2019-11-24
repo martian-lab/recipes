@@ -10,9 +10,9 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("bind:imgUrl")
     fun setImage(imageView: ImageView, imgUrl: String?) {
-        Glide.with(imageView.getContext()).load(imgUrl)
-            .into(
-                imageView
-            )
+        if( imgUrl?.matches(""".*-\d{1}\.jpg""".toRegex()) == false )
+            Glide.with(imageView.context)
+                .load(imgUrl)
+                .into(imageView)
     }
 }

@@ -2,6 +2,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk"
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,50 +12,65 @@
                 type="com.martianlab.recipes.entities.RecipeStage" />
     </data>
 
-
-    <FrameLayout
-            android:id="@+id/root"
+    <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="16dp"
-                android:innerRadius="0dp"
-                android:shape="ring"
-                app:cardCornerRadius="12dp">
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/recipeImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:adjustViewBounds="true"
+                android:contentDescription="Фото рецепта"
+                android:scaleType="fitStart"
+                bind:imgUrl="@{stage.imageURL}" />
 
-            <TextView
-                    android:id="@+id/stepNumber"
+        <FrameLayout
+                android:id="@+id/root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:textColor="@color/bluey_grey"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:innerRadius="0dp"
+                    android:shape="ring"
+                    app:cardCornerRadius="12dp">
+
+                <TextView
+                        android:id="@+id/stepNumber"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:text="@{String.valueOf(stage.step)}"
+                        android:textColor="@color/bluey_grey"
+                        android:textSize="14sp"
+                        tools:text="199" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="15dp"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@{stage.text}"
+                    android:textColor="@color/greyish_brown"
                     android:textSize="14sp"
-                    android:text="@{String.valueOf(stage.step)}"
-                    tools:text="199" />
+                    tools:text="Налейте в миску белое вино и сок, добавьте кетчуп. Натрите чеснок, нарежьте чили и закиньте всё в миску" />
 
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="56dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="15dp"
-                android:lineSpacingExtra="4sp"
-                android:textColor="@color/greyish_brown"
-                android:textSize="14sp"
-                android:text="@{stage.text}"
-                tools:text="Налейте в миску белое вино и сок, добавьте кетчуп. Натрите чеснок, нарежьте чили и закиньте всё в миску" />
-
-    </FrameLayout>
+        </FrameLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

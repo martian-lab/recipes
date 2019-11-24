@@ -18,7 +18,6 @@ import com.martianlab.recipes.presentation.viewmodel.RecipesViewModel
 class RecipeStageAdapter(
 ) : RecyclerView.Adapter<RecipeStageAdapter.ViewHolder>(){
 
-    lateinit var context : Context
     var items = listOf<RecipeStage>()
 
     override fun getItemCount(): Int = items.size
@@ -26,13 +25,12 @@ class RecipeStageAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view : RecipeStageItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.recipe_stage_item, parent, false)
-        context = parent.context
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val category = items[position]
-        holder.bind(category)
+        val stage = items[position]
+        holder.bind(stage, position)
     }
 
     fun replaceData(list: List<RecipeStage>) {
@@ -41,8 +39,8 @@ class RecipeStageAdapter(
     }
 
     class ViewHolder(private val binding: ViewDataBinding ) : RecyclerView.ViewHolder(binding.root){
-        fun bind( stage: RecipeStage){
-            (binding as RecipeStageItemBinding).stage = stage
+        fun bind( stage: RecipeStage, position: Int){
+            (binding as RecipeStageItemBinding).stage = stage.copy(step = position+1)
             binding.executePendingBindings()
         }
 
