@@ -20,7 +20,7 @@ interface RecipeDao {
     suspend fun getById(id: Long): RecipeWithDependencies
 
     @Transaction
-    @Query("SELECT * FROM recipe JOIN recipe_tag ON recipe.id = recipe_id WHERE recipe_tag.id = :tag_id ORDER BY recipe.id DESC")
+    @Query("SELECT * FROM recipe JOIN recipe_tag ON recipe.id = recipe_id WHERE recipe_tag.id = :tag_id ORDER BY recipe.rating DESC, recipe.id DESC")
     fun getRecipesPaged(tag_id : Long): DataSource.Factory<Int, RecipeWithDependencies>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
