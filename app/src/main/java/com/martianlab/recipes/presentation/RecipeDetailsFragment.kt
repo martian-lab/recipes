@@ -99,11 +99,12 @@ class RecipeDetailsFragment : Fragment() {
 
 }
 
-//object Complx{
-//    val complx = mapOf(1 to "низкая", 2 to "средняя", 3 to "высокая")
-//}
 
 enum class RecipeComplexity(val title: String, val num : Int ){
     LOW("низкая",1 ), MEDIUM("средняя",2 ), HIGH("высокая", 3);
-    fun getByNum(num : Int ) = values().find { it.num == num  }?.title ?: "хз"
+
+    companion object{
+        @JvmStatic
+        fun getByNum(num : Int ) = values().find { it.num == num  }?.title ?: "хз"
+    }
 }

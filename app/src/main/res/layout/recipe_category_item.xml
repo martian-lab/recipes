@@ -22,12 +22,12 @@
                 android:id="@+id/category_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="8dp"
                 android:text="@{category.title}"
                 android:gravity="center"
                 android:layout_gravity="top"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                tools:text="Реепты из березы"/>
+                tools:text="Рецепты из березы"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/receiptList"
@@ -39,7 +39,7 @@
                 android:layout_marginBottom="8dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:context="com.martianlab.recipes.presentation.MainActivity"
-                tools:listitem="@layout/list_item_recipe"/>
+                tools:listitem="@layout/recipe_item"/>
 
 
     </androidx.cardview.widget.CardView>
