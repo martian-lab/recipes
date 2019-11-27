@@ -152,30 +152,32 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ingredientsListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:clipToPadding="false"
-                android:contentDescription="Список ингредиентов"
-                android:paddingBottom="0dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:listitem="@layout/recipe_ingredient_item" />
+            android:id="@+id/ingredientsListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:clipToPadding="false"
+            android:contentDescription="Список ингредиентов"
+            android:overScrollMode="never"
+            android:paddingBottom="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/recipe_ingredient_item" />
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/stagesListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:clipToPadding="false"
-                android:contentDescription="Шаги приготовления"
-                android:paddingBottom="0dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:listitem="@layout/recipe_stage_item" />
+            android:id="@+id/stagesListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:clipToPadding="false"
+            android:contentDescription="Шаги приготовления"
+            android:overScrollMode="never"
+            android:paddingBottom="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/recipe_stage_item" />
 
         <View
                 android:id="@+id/main_gradient_bottom"
