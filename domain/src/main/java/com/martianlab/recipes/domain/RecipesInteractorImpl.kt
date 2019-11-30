@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 import com.martianlab.recipes.entities.Category
 import com.martianlab.recipes.entities.Recipe
+import com.martianlab.recipes.entities.RecipeIngredient
 import com.martianlab.recipes.entities.RecipeTag
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -39,4 +40,10 @@ class RecipesInteractorImpl @Inject constructor(
     override suspend fun getRecipe(id: Long): Recipe? {
         return recipesRepository.getRecipe(id)
     }
+
+    override suspend fun searchIngredients(contains: String): List<RecipeIngredient> = recipesRepository.searchIngredients(contains)
+    override suspend fun searchRecipes(contains: String): List<Recipe> = recipesRepository.searchRecipes(contains)
+    override suspend fun setFavorite(recipe: Recipe) = recipesRepository.setFavorite(recipe)
+    override suspend fun removeFavorite(recipe: Recipe) = recipesRepository.removeFavorite(recipe)
+    override suspend fun getFavorites(): List<Recipe> = recipesRepository.getFavorites()
 }

@@ -8,12 +8,13 @@ import androidx.paging.DataSource
 interface RecipeDao {
 
     @Transaction
-    @Query("SELECT * FROM recipe JOIN recipe_tag ON recipe.id = recipe_id WHERE recipe_tag.id = :tag_id")
-    suspend fun getRecipes(tag_id: Long): List<RecipeWithDependencies>
+    @Query("SELECT * FROM recipe JOIN recipe_tag ON recipe.id = recipe_id WHERE recipe_tag.title = :tag_title")
+    suspend fun getRecipesByTagTitle(tag_title: String): List<RecipeWithDependencies>
 
     @Transaction
     @Query("SELECT * FROM recipe")
     suspend fun getRecipes(): List<RecipeWithDependencies>
+
 
     @Transaction
     @Query("SELECT * FROM recipe WHERE id = :id")
@@ -52,4 +53,23 @@ interface RecipeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTags(recipeTagList : List<RecipeTagEntity>) : List<Long>
+
+    @Query("DELETE FROM recipe_tag WHERE recipe_id = :recipeId AND title  = :tagTitle")
+    suspend fun removeTag( recipeId : Long, tagTitle : String )
+
+    @Transaction
+    @Query("SELECT * FROM recipe WHERE recipe.title LIKE :contains")
+    suspend fun searchRecipes( contains : String ) : List<RecipeWithDependencies>
+
+    @Query("SELECT * FROM recipe_ingredient WHERE recipe_ingredient.title LIKE :contains")
+    suspend fun searchIngredients( contains : String ) : List<RecipeIngredientEntity>
+
+    @Transaction
+    @Query("SELECT * FROM recipe")
+    suspend fun getFavorites(): List<RecipeWithDependencies>
+
+    @Transaction
+    @Query("SELECT * FROM recipe JOIN recipe_ingredient ON recipe.id = recipe_id WHERE recipe_ingredient.title = :title")
+    suspend fun getByIngredient(title : String) : List<RecipeWithDependencies>
+
 }

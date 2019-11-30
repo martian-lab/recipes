@@ -5,7 +5,7 @@ import androidx.room.*
 @Entity(
     tableName = "recipe_ingredient",
     primaryKeys = ["id", "recipe_id"],
-    indices = [Index("recipe_id")],
+    indices = [Index("recipe_id"), Index("title")],
     foreignKeys = [ForeignKey(entity = RecipeEntity::class, parentColumns = ["id"], childColumns = ["recipe_id"], onDelete = ForeignKey.CASCADE)]
 )
 data class RecipeIngredientEntity(

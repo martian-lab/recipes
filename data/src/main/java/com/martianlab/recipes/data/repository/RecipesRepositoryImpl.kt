@@ -76,9 +76,10 @@ class RecipesRepositoryImpl @Inject constructor(
         return dbApi.getRecipeById(id)
     }
 
-    override suspend fun getRecipesByIngredient(ingredients: List<RecipeIngredient>): List<Recipe> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override suspend fun getRecipesByIngredients(ingredients: List<RecipeIngredient>): List<Recipe> =
+        dbApi.getRecipesByIngredient(ingredients[0])
+            .filter { it.ingredients.containsAll(ingredients) }
+
 
     private suspend fun loadCategoryRecipesToDb(category : Category ){
         val count = 20
@@ -159,6 +160,17 @@ class RecipesRepositoryImpl @Inject constructor(
     suspend fun getRecipesTotal() : Long{
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+
+    override suspend fun searchIngredients(contains: String): List<RecipeIngredient> = dbApi.searchIngredients(contains)
+
+    override suspend fun searchRecipes(contains: String): List<Recipe> = dbApi.searchRecipes(contains)
+
+    override suspend fun setFavorite(recipe: Recipe) = dbApi.setFavorite(recipe)
+
+    override suspend fun removeFavorite(recipe: Recipe) = dbApi.removeFavorite(recipe)
+
+    override suspend fun getFavorites(): List<Recipe> = dbApi.getFavorites()
 }
 
 

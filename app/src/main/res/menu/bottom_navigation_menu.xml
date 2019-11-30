@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:enabled="true"
-        android:icon="@drawable/ic_search"
-        android:title="Профиль"
-        app:showAsAction="always" />
+            android:id="@+id/action_settings"
+            android:enabled="true"
+            android:icon="@drawable/ic_bottomnavigation_home"
+            android:title="Домой"
+            app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_orders"
-        android:enabled="true"
-        android:icon="@drawable/ic_search"
-        android:title="Рейс"
-        app:showAsAction="always" />
+            android:id="@+id/action_catalog"
+            android:enabled="true"
+            android:icon="@drawable/ic_bottomnavigation_catalog"
+            android:title="Каталог"
+            app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_invisible"
-        android:enabled="false"
-        android:title=""
-        android:iconTint="@android:color/transparent"
-        app:showAsAction="always" />
+            android:id="@+id/action_favorites"
+            android:enabled="true"
+            android:icon="@drawable/ic_bottomnavigation_favorites_border"
+            android:title="Избранное"
+            app:showAsAction="always" />
+
+<!--    <item-->
+<!--            android:id="@+id/action_invisible"-->
+<!--            android:enabled="false"-->
+<!--            android:iconTint="@android:color/transparent"-->
+<!--            android:title=""-->
+<!--            android:visible="false"-->
+<!--            app:showAsAction="always" />-->
 
     <item
-        android:id="@+id/action_summary"
-        android:enabled="true"
-        android:icon="@drawable/ic_search"
-        android:title="Итоги"
-        app:showAsAction="always" />
+            android:id="@+id/action_search"
+            android:enabled="true"
+            android:icon="@drawable/ic_bottomnavigation_search"
+            android:title="Поиск"
+            app:showAsAction="always" />
     <item
-        android:id="@+id/action_phones"
-        android:enabled="true"
-        android:icon="@drawable/ic_search"
-        android:title="Звонки"
-        app:showAsAction="always" />
+            android:id="@+id/action_profile"
+            android:enabled="true"
+            android:icon="@drawable/ic_bottomnavigation_profile"
+            android:title="Профиль"
+            app:showAsAction="always" />
 </menu>

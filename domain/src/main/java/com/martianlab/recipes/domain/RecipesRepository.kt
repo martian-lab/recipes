@@ -15,7 +15,7 @@ interface RecipesRepository {
 
     suspend fun getRecipe( id : Long ) : Recipe?
 
-    suspend fun getRecipesByIngredient( ingredients: List<RecipeIngredient> ) : List<Recipe>
+    suspend fun getRecipesByIngredients( ingredients: List<RecipeIngredient> ) : List<Recipe>
 
     suspend fun loadRecipesToDb()
 
@@ -24,4 +24,15 @@ interface RecipesRepository {
     suspend fun loadRecipesToDbFlow() : Flow<String>
 
     fun loadRecipesPaged(tags : List<RecipeTag>): LiveData<PagedList<Recipe>>
+
+    suspend fun searchIngredients( contains : String ) : List<RecipeIngredient>
+
+    suspend fun searchRecipes( contains : String ) : List<Recipe>
+
+    suspend fun setFavorite(recipe: Recipe)
+
+    suspend fun removeFavorite(recipe: Recipe)
+
+    suspend fun getFavorites(): List<Recipe>
+
 }

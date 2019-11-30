@@ -17,4 +17,14 @@
         <item name="android:textColorSecondary">@color/black</item>
         <item name="android:itemBackground">#ffffffff</item>
     </style>
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/font_utkonos_bold</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/font_utkonos_bold</item>
+    </style>
 </resources>
