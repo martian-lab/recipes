@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.martianlab.recipes.R
-import com.martianlab.recipes.databinding.ListItemRecipeBinding
+import com.martianlab.recipes.databinding.RecipeItemBinding
 import com.martianlab.recipes.entities.Recipe
 
 class RecipesListPageAdapter(
@@ -22,7 +22,7 @@ class RecipesListPageAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
 
-        val view : ListItemRecipeBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.list_item_recipe, parent, false)
+        val view : RecipeItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.recipe_item, parent, false)
         context = parent.context
         return RecipeViewHolder(view, recipeClickAction)
     }
@@ -43,7 +43,7 @@ class RecipesListPageAdapter(
 
 class RecipeViewHolder(private val binding: ViewDataBinding, private val recipeClickAction : (Long)  -> Unit) : RecyclerView.ViewHolder(binding.root){
     fun bind( recipe: Recipe, context: Context ){
-        (binding as ListItemRecipeBinding).recipe = recipe
+        (binding as RecipeItemBinding).recipe = recipe
         binding.clickListener = View.OnClickListener { recipeClickAction(recipe.id) }
         Glide
             .with(context)

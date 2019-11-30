@@ -2,7 +2,6 @@ package com.martianlab.recipes.presentation.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -10,16 +9,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
-import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.martianlab.recipes.R
-import com.martianlab.recipes.databinding.ListItemRecipeBinding
 import com.martianlab.recipes.databinding.RecipeCategoryItemBinding
 import com.martianlab.recipes.entities.Category
 import com.martianlab.recipes.entities.Recipe
-import com.martianlab.recipes.presentation.viewmodel.RecipesViewModel
 
 class CategoryListAdapter(
     private val getRecipes : (Category) -> LiveData<PagedList<Recipe>>,

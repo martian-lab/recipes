@@ -19,7 +19,7 @@
                 android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:context="com.martianlab.recipes.presentation.MainActivity"
-                tools:listitem="@layout/list_item_recipe" />
+                tools:listitem="@layout/recipe_item" />
 
         <ProgressBar
                 android:id="@+id/progressBar"

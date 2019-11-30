@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
-import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.martianlab.recipes.data.db.DbApi
 import com.martianlab.recipes.domain.BackendApi
@@ -14,6 +13,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
+import com.google.gson.GsonBuilder
+
+import com.google.gson.Gson
+
+
+
 
 
 @Singleton
@@ -55,7 +60,8 @@ class RecipesRepositoryImpl @Inject constructor(
     private fun loadRecipesFromFile() : List<Recipe>{
         val json = RecipesRepositoryImpl::class.java.classLoader?.getResource("recipes.json")?.readText()
         val recipeListTypeToken = object : TypeToken<List<Recipe>>() {}.type
-        val recipeList: List<Recipe> = Gson().fromJson(json, recipeListTypeToken)
+        val gson: Gson = GsonBuilder().setDateFormat("MMM dd, yyyy HH:mm:ss").create()
+        val recipeList: List<Recipe> = gson.fromJson(json, recipeListTypeToken)
         return recipeList
     }
 
